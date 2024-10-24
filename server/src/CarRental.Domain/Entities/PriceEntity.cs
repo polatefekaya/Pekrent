@@ -1,9 +1,14 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarRental.Domain.Entities;
 
+[Table("prices", Schema = "listing")]
 public class PriceEntity
 {
+    [Key]
+    public int Id {get; set;}
     public decimal HourlyRate {get; set;}
     public decimal DailyRate {get; set;}
     public decimal WeeklyRate {get; set;}

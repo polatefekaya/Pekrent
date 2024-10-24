@@ -1,9 +1,14 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarRental.Domain.Entities;
 
+[Table("listings", Schema = "listing")]
 public class ListingEntity
 {
+    [Key]
+    public int Id {get; set;}
     public int UserId {get; set;}
     public int CarId {get; set;}
     public string? Heading {get; set;}

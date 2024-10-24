@@ -5,24 +5,18 @@ using CarRental.Application;
 using CarRental.Infrastructure;
 using CarRental.Fines;
 using CarRental.Payment;
+using CarRental.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration().CreateLogger();
 
-builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, LoggerConfiguration loggerConfiguration) => {
-    loggerConfiguration
-    .ReadFrom.Configuration(context.Configuration)
-    .ReadFrom.Services(services);
-});
+builder.Host.ConfigureCustomSerilog();
 
-builder.Services.AddHttpLogging(options => {
-    options.LoggingFields = 
-    Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.RequestPropertiesAndHeaders 
-    | Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponsePropertiesAndHeaders;
-});
+builder.Services.ConfigureCustomLogging();
 
 builder.Services.AddApplication()
+                .AddDatabase(builder.Configuration.GetConnectionString(""))
                 .AddInfrastructure()
                 .AddPayment()
                 .AddFines();
@@ -32,25 +26,11 @@ builder.Services.AddControllers(options => {
     options.Filters.Add(new ConsumesAttribute("application/json"));
 });
 
-builder.Services.AddApiVersioning(config => {
-    config.ApiVersionReader = ApiVersionReader.Combine(
-        new UrlSegmentApiVersionReader(),
-        new HeaderApiVersionReader("X-Api-Version")
-    ); 
-    config.DefaultApiVersion = new ApiVersion(1, 0);
-    config.AssumeDefaultVersionWhenUnspecified = true;
-    config.ReportApiVersions = true;
-})
-    .AddVersionedApiExplorer(options => {
-        options.GroupNameFormat = "'v'VVV";
-        options.SubstituteApiVersionInUrl = true;
-    });
+builder.Services.ConfigureApiVersioning();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => {
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Version = "1.0", Title = "Car Rental API V1"});
-    options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo { Version = "2.0", Title = "Car Rental API V2" });
-});
+
+builder.Services.ConfigureSwaggerGenData();
 
 var app = builder.Build();
 
