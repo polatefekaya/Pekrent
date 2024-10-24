@@ -16,7 +16,7 @@ builder.Host.ConfigureCustomSerilog();
 builder.Services.ConfigureCustomLogging();
 
 builder.Services.AddApplication()
-                .AddDatabase(builder.Configuration.GetConnectionString(""))
+                //.AddDatabase(builder.Configuration.GetConnectionString(""))
                 .AddInfrastructure()
                 .AddPayment()
                 .AddFines();
