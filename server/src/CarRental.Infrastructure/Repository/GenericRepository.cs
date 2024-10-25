@@ -1,5 +1,7 @@
 using System;
+using System.Linq.Expressions;
 using CarRental.Application.Interfaces.Repository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace CarRental.Infrastructure.Repository;
@@ -7,37 +9,54 @@ namespace CarRental.Infrastructure.Repository;
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     private readonly ILogger<GenericRepository<T>> _logger;
+    private readonly DbContext _context;
+    private readonly DbSet<T> _dbSet;
 
-    public GenericRepository(ILogger<GenericRepository<T>> logger){
+    public GenericRepository(ILogger<GenericRepository<T>> logger, DbContext context){
         _logger = logger;
+        _context = context;
+        _dbSet = _context.Set<T>();
     }
-    public Task AddAsync(T entity)
+    public async Task AddAsync(T entity)
     {
-        _logger.LogInformation("AddAsync");
-        throw new NotImplementedException();
+        _logger.LogInformation("AddAsync started for {type}", typeof(T));
+        await _dbSet.AddAsync(entity);
+        await _context.SaveChangesAsync();
     }
 
-    public Task DeleteAsync(T entity)
+    public async Task DeleteAsync(T entity)
     {
-        throw new NotImplementedException();
+        _logger.LogInformation("DeleteAsync started for {type}", typeof(T));
+        _dbSet.Remove(entity);
+        await _context.SaveChangesAsync();
     }
 
-    public Task DeleteAllAsync(){
-        throw new NotImplementedException();
+    public async Task DeleteRangeAsync(T[] entities){
+        _logger.LogInformation("DeleteAllAsync started for {type}", typeof(T));
+        _dbSet.RemoveRange(entities);
+        await _context.SaveChangesAsync();  
     }
 
-    public Task<IEnumerable<T>> GetAllAsync()
-    {
-        throw new NotImplementedException();
+    public async Task<IEnumerable<T>?> GetRangeAsync(Expression<Func<T, bool>> predicate){
+        _logger.LogInformation("GetAllAsync started for {type}", typeof(T));
+        return await _dbSet.Where(predicate).ToListAsync();
     }
 
-    public Task<T> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
+    public async Task<IEnumerable<T>?> GetAllAsync(){
+        _logger.LogInformation("GetAllAsync started for {type}", typeof(T));
+        return await _dbSet.ToListAsync();
     }
 
-    public Task UpdateAsync(T entity)
-    {
-        throw new NotImplementedException();
+    public async Task<T?> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate){
+        _logger.LogInformation("GetFirstOrDefaultAsync started for {type}", typeof(T));
+        return await _dbSet.FirstOrDefaultAsync(predicate);
     }
+
+    public async Task UpdateAsync(T entity)
+    {
+        _logger.LogInformation("UpdateAsync started for {type}", typeof(T));
+        _dbSet.Update(entity);
+        await _context.SaveChangesAsync();
+    }
+
 }

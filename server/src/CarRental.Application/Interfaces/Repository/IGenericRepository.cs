@@ -1,13 +1,15 @@
 using System;
+using System.Linq.Expressions;
 
 namespace CarRental.Application.Interfaces.Repository;
 
 public interface IGenericRepository<T> where T : class
 {
-    Task<T> GetByIdAsync(int id);
-    Task<IEnumerable<T>> GetAllAsync();
+    Task<IEnumerable<T>?> GetRangeAsync(Expression<Func<T, bool>> predicate);
+    Task<T?> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
+    Task<IEnumerable<T>?> GetAllAsync();
     Task AddAsync(T entity);
     Task UpdateAsync(T entity);
     Task DeleteAsync(T entity);
-    Task DeleteAllAsync();
+    Task DeleteRangeAsync(T[] entities);
 }

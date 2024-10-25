@@ -10,6 +10,7 @@ using CarRental.Api;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.ConfigureAzureKeyVault(builder.Configuration["KeyVaultName"]);
+builder.Configuration["Serilog:WriteTo:2:Args:connectionString"] = builder.Configuration["ApplicationInsights"];
 
 Log.Logger = new LoggerConfiguration().CreateLogger();
 
@@ -29,7 +30,7 @@ builder.Services.AddControllers(options => {
 });
 
 //Telemetry, use Azure Key Vault
-//builder.Services.ConfigureOpenTelemetry("car-rental-api", builder.Configuration.GetConnectionString(""));
+builder.Services.ConfigureOpenTelemetry("car-rental-api", builder.Configuration["ApplicationInsights"]);
 
 builder.Services.ConfigureApiVersioning();
 
