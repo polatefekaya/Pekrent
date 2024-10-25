@@ -12,7 +12,9 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddDatabase(this IServiceCollection services, string connectionString){
+    public static IServiceCollection AddDatabase(this IServiceCollection services, string? connectionString){
+        if(connectionString is null) return services;
+        
         services.AddDbContextPool<ApplicationDbContext>(
             options => options.UseNpgsql(connectionString)
         );

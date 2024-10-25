@@ -9,7 +9,9 @@ namespace CarRental.Api;
 
 public static class OpenTelemetry
 {
-    public static IServiceCollection ConfigureOpenTelemetry(this IServiceCollection services, string serviceName, string connectionString){
+    public static IServiceCollection ConfigureOpenTelemetry(this IServiceCollection services, string serviceName, string? connectionString){
+        if(connectionString is null) return services;
+
         services.AddOpenTelemetry()
                 .ConfigureResource(res => res.AddService(serviceName))
                 .WithMetrics(metrics => metrics
