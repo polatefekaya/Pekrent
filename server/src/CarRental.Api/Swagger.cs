@@ -11,4 +11,13 @@ public static class Swagger
         });
         return services;
     }
+
+    public static IApplicationBuilder ConfigureSwaggerMiddlewares(this IApplicationBuilder app){
+        app.UseSwagger();
+        app.UseSwaggerUI(options => {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "1.0");
+            options.SwaggerEndpoint("/swagger/v2/swagger.json", "2.0");
+        });
+        return app;
+    }
 }

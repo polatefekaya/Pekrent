@@ -25,6 +25,8 @@ builder.Services.AddControllers(options => {
     options.Filters.Add(new ProducesAttribute("application/json"));
     options.Filters.Add(new ConsumesAttribute("application/json"));
 });
+//Telemetry, use Azure Key Vault
+//builder.Services.ConfigureOpenTelemetry("car-rental-api", builder.Configuration.GetConnectionString(""));
 
 builder.Services.ConfigureApiVersioning();
 
@@ -37,11 +39,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options => {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "1.0");
-        options.SwaggerEndpoint("/swagger/v2/swagger.json", "2.0");
-});
+    app.ConfigureSwaggerMiddlewares();
 }
 
 app.UseHttpsRedirection();
