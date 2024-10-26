@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using CarRental.Application.Interfaces.Repository;
 using CarRental.Application.Interfaces.Repository.Spesifications;
-using CarRental.Application.Spesifications.Base;
+using CarRental.Application.Specifications.Base;
 using CarRental.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

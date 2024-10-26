@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using CarRental.Application.Interfaces.Repository.Spesifications;
 
-namespace CarRental.Application.Spesifications.Base;
+namespace CarRental.Application.Specifications.Base;
 
 public class Specification<T, TResult> : ISpecification<T, TResult>
 {
@@ -32,7 +32,8 @@ public class Specification<T, TResult> : ISpecification<T, TResult>
         Selector = selector;
     }
 
-    public void ApplySelectorMany(Expression<Func<T, IEnumerable<TResult>>> selectorMany){
+    public void ApplySelectorMany(Expression<Func<T, IEnumerable<TResult>>> selectorMany)
+    {
         SelectorMany = selectorMany;
         IsMany = true;
     }

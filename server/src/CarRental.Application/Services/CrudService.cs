@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using CarRental.Application.Interfaces.Repository;
 using CarRental.Application.Interfaces.Repository.Spesifications;
 using CarRental.Application.Interfaces.Services;
-using CarRental.Application.Spesifications.Base;
+using CarRental.Application.Specifications.Base;
 using CarRental.Domain.Entities.Base;
 using Microsoft.Extensions.Logging;
 

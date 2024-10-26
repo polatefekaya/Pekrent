@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using CarRental.Application.Interfaces.Repository.Spesifications;
 
-namespace CarRental.Application.Spesifications.Base;
+namespace CarRental.Application.Specifications.Base;
 
 public static class SpecificationEvaluator<T> where T : class
 {
@@ -23,17 +23,23 @@ public static class SpecificationEvaluator<T> where T : class
 
         IQueryable<TResult> resultQuery;
 
-        if (specification.IsMany && specification.SelectorMany is not null){
+        if (specification.IsMany && specification.SelectorMany is not null)
+        {
             resultQuery = query.SelectMany(specification.SelectorMany);
 
-        } else if (specification.Selector is not null){
+        }
+        else if (specification.Selector is not null)
+        {
             resultQuery = query.Select(specification.Selector);
 
-        } else {
+        }
+        else
+        {
             resultQuery = (IQueryable<TResult>)query;
         }
 
-        if(specification.IsSingleResult){
+        if (specification.IsSingleResult)
+        {
             resultQuery.Take(1);
         }
 
