@@ -9,6 +9,6 @@ public class AvailabilityEntityConfiguration : IEntityTypeConfiguration<Availabi
 {
     public void Configure(EntityTypeBuilder<AvailabilityEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

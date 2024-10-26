@@ -35,9 +35,15 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<SavedEntity> Saved { get; set; }
 
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){
+
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.HasPostgresExtension("postgis");
 
         modelBuilder.ApplyConfiguration(new AvailabilityEntityConfiguration());
         modelBuilder.ApplyConfiguration(new BlacklistEntityConfiguration());

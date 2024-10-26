@@ -32,4 +32,29 @@ public class OrderTripProgressController : CustomControllerBase
         
     }
 
+    [HttpPut]
+    public async Task SetWaitingPickupAsync(){
+        
+    }
+
+    [HttpPut]
+    public async Task SetAuthenticatedAsync(){
+        
+    }
+
+    [HttpPut]
+    public async Task SetApprovedAsync(){
+        
+    }
+
+    [HttpPut]
+    public async Task SetInTripAsync(){
+        
+    }
+
+    [HttpPut]
+    public async Task SetReturnedAsync(){
+        
+    }
+
 }

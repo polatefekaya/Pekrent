@@ -9,6 +9,6 @@ public class SavedEntityConfiguration : IEntityTypeConfiguration<SavedEntity>
 {
     public void Configure(EntityTypeBuilder<SavedEntity> builder)
     {
-        throw new NotImplementedException();
+ 
     }
 }

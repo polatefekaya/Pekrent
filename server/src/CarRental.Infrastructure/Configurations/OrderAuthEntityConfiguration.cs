@@ -9,6 +9,6 @@ public class OrderAuthEntityConfiguration : IEntityTypeConfiguration<OrderAuthEn
 {
     public void Configure(EntityTypeBuilder<OrderAuthEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

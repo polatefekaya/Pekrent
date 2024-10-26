@@ -1,18 +1,17 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CarRental.Domain.Entities.Base;
 
 namespace CarRental.Domain.Entities;
 
 [Table("order_table_progresses", Schema = "order")]
-public class OrderPaymentProgressEntity
+public class OrderPaymentProgressEntity : BaseEntity
 {
-    [Key]
-    public int Id {get; set;}
     public int ProgressId {get; set;}
     public bool DownPaymentMade {get; set;}
     public bool DepositPaid {get; set;}
     public bool LeftoutCharged {get; set;}
-    public DateTime CreatedAt {get; set;}
-    public DateTime UpdatedAt {get; set;}
+
+    public OrderProgressEntity Progress {get; set;} = null!;
 }

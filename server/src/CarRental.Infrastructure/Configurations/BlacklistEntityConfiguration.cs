@@ -9,6 +9,6 @@ public class BlacklistEntityConfiguration : IEntityTypeConfiguration<BlacklistEn
 {
     public void Configure(EntityTypeBuilder<BlacklistEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

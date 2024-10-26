@@ -32,18 +32,5 @@ public class ListingController : CustomControllerBase
         
     }
 
-    [HttpPut]
-    public async Task SetBookedCar(){
-        
-    }
 
-    [HttpPut]
-    public async Task SetLeftCar(){
-        
-    }
-
-    [HttpPut]
-    public async Task SetAllBooked(){
-        
-    }
 }

@@ -1,5 +1,6 @@
 using System;
 using CarRental.Application.Interfaces.Services.Save;
+using CarRental.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Api.Controllers.v1;
@@ -23,7 +24,8 @@ public class SavingsController : CustomControllerBase
     }
     
     [HttpPost]
-    public async Task AddAsync(){
+    public async Task AddAsync(SavedEntity entity){
+        await _saveService.CreateAsync(entity);
     }
 
     [HttpPut]

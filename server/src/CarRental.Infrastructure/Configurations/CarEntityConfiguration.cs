@@ -9,6 +9,6 @@ public class CarEntityConfiguration : IEntityTypeConfiguration<CarEntity>
 {
     public void Configure(EntityTypeBuilder<CarEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

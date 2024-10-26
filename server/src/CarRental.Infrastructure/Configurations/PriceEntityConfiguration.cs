@@ -9,6 +9,6 @@ public class PriceEntityConfiguration : IEntityTypeConfiguration<PriceEntity>
 {
     public void Configure(EntityTypeBuilder<PriceEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

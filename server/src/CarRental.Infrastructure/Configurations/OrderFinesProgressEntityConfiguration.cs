@@ -9,6 +9,6 @@ public class OrderFinesProgressEntityConfiguration : IEntityTypeConfiguration<Or
 {
     public void Configure(EntityTypeBuilder<OrderFinesProgressEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

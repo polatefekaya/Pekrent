@@ -9,6 +9,6 @@ public class OrderFineEntityConfiguration : IEntityTypeConfiguration<OrderFineEn
 {
     public void Configure(EntityTypeBuilder<OrderFineEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

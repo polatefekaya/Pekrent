@@ -9,6 +9,6 @@ public class OrderPaymentProgressEntityConfiguration : IEntityTypeConfiguration<
 {
     public void Configure(EntityTypeBuilder<OrderPaymentProgressEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

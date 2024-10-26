@@ -18,9 +18,9 @@ builder.Host.ConfigureCustomSerilog();
 
 builder.Services.ConfigureCustomLogging();
 
-builder.Services.AddApplication()
-                //.AddDatabase(builder.Configuration["PostgresConnectionString"])
-                .AddInfrastructure()
+builder.Services.AddInfrastructure()
+                .AddApplication()
+                .AddDatabase(builder.Configuration["PostgresConnectionString"])
                 .AddPayment()
                 .AddFines();
 

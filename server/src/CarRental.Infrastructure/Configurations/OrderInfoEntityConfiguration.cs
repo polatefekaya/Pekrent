@@ -9,6 +9,6 @@ public class OrderInfoEntityConfiguration : IEntityTypeConfiguration<OrderInfoEn
 {
     public void Configure(EntityTypeBuilder<OrderInfoEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

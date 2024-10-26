@@ -1,18 +1,17 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CarRental.Domain.Entities.Base;
 
 namespace CarRental.Domain.Entities;
 
 [Table("availabilities", Schema = "user")]
-public class AvailabilityEntity
+public class AvailabilityEntity : BaseEntity
 {
-    [Key]
-    public int Id {get; set;}
     public int UserId {get; set;}
     public DateTime LastOnline {get; set;}
     public bool Online {get; set;}
     public DateTime ApproxReplyTime {get; set;}
-    public DateTime CreatedAt {get; set;}
-    public DateTime UpdatedAt {get; set;}
+    
+    public UserEntity User {get; set;} = null!;
 }

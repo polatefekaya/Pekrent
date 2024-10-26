@@ -1,6 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using CarRental.Application.Interfaces.Repository;
+using CarRental.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -9,10 +10,10 @@ namespace CarRental.Infrastructure.Repository;
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     private readonly ILogger<GenericRepository<T>> _logger;
-    private readonly DbContext _context;
+    private readonly ApplicationDbContext _context;
     private readonly DbSet<T> _dbSet;
 
-    public GenericRepository(ILogger<GenericRepository<T>> logger, DbContext context){
+    public GenericRepository(ILogger<GenericRepository<T>> logger, ApplicationDbContext context){
         _logger = logger;
         _context = context;
         _dbSet = _context.Set<T>();
@@ -20,8 +21,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     public async Task AddAsync(T entity)
     {
         _logger.LogInformation("AddAsync started for {type}", typeof(T));
-        await _dbSet.AddAsync(entity);
-        await _context.SaveChangesAsync();
+        // await _dbSet.AddAsync(entity);
+        // await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(T entity)

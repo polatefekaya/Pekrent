@@ -1,14 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CarRental.Domain.Entities.Base;
 
 namespace CarRental.Domain.Entities;
 
 [Table("prices", Schema = "listing")]
-public class PriceEntity
+public class PriceEntity : BaseEntity
 {
-    [Key]
-    public int Id {get; set;}
     public decimal HourlyRate {get; set;}
     public decimal DailyRate {get; set;}
     public decimal WeeklyRate {get; set;}
@@ -22,6 +21,4 @@ public class PriceEntity
     public bool WeekendPrice {get; set;}
     public bool ExplicitDay {get; set;}
     public string? Day {get; set;}
-    public DateTime CreatedAt {get; set;}
-    public DateTime UpdatedAt {get; set;}
 }

@@ -9,6 +9,6 @@ public class ListingEntityConfiguration : IEntityTypeConfiguration<ListingEntity
 {
     public void Configure(EntityTypeBuilder<ListingEntity> builder)
     {
-        throw new NotImplementedException();
+        
     }
 }

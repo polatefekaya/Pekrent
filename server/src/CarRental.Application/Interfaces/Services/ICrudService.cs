@@ -1,9 +1,10 @@
 using System;
 using System.Linq.Expressions;
+using CarRental.Domain.Entities.Base;
 
 namespace CarRental.Application.Interfaces.Services;
 
-public interface ICrudService<T> where T : class
+public interface ICrudService<T> where T : BaseEntity
 {
     Task CreateAsync(T entity);
     Task<T?> GetAsync(int id);

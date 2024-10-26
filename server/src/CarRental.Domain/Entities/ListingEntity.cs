@@ -1,14 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CarRental.Domain.Entities.Base;
 
 namespace CarRental.Domain.Entities;
 
 [Table("listings", Schema = "listing")]
-public class ListingEntity
+public class ListingEntity : BaseEntity
 {
-    [Key]
-    public int Id {get; set;}
     public int UserId {get; set;}
     public int CarId {get; set;}
     public string? Heading {get; set;}
@@ -18,6 +17,8 @@ public class ListingEntity
     public int Left {get; set;}
     public bool AllBooked {get; set;}
     public bool CanGoOuterCity {get; set;}
-    public DateTime CreatedAt {get; set;}
-    public DateTime UpdatedAt {get; set;}
+
+    public UserEntity User {get; set;} = null!;
+    public CarEntity Car {get; set;} = null!
+    ;
 }
