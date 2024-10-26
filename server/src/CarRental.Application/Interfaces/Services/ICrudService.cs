@@ -9,11 +9,11 @@ public interface ICrudService<T> where T : BaseEntity
 {
     Task CreateAsync(T entity);
     Task<T?> GetAsync(int id);
-    Task<IEnumerable<T>?> GetRangeAsync(ISpesification<T> spesification);
-    Task<T?> GetFirstOrDefaultAsync(ISpesification<T> spesification);
-    Task<T?> GetSingleOrDefaultAsync(ISpesification<T> spesification);
+    Task<IEnumerable<TResult>?> GetRangeAsync<TResult>(ISpecification<T, TResult> specification);
+    Task<TResult?> GetFirstOrDefaultAsync<TResult>(ISpecification<T, TResult> specification);
+    Task<TResult?> GetSingleOrDefaultAsync<TResult>(ISpecification<T, TResult> specification);
     Task<IEnumerable<T>?> GetAllAsync();
     Task UpdateAsync(T entity);
     Task DeleteAsync(int id);
-    Task DeleteAsync(ISpesification<T> spesification);
+    Task DeleteAsync(ISpecification<T, T> specification);
 }

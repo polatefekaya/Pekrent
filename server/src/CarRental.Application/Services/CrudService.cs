@@ -14,7 +14,8 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
     private readonly ILogger<CrudService<T>> _logger;
     private readonly IGenericRepository<T> _repository;
     private readonly string _className;
-    public CrudService(ILogger<CrudService<T>> logger, IGenericRepository<T> repository){
+    public CrudService(ILogger<CrudService<T>> logger, IGenericRepository<T> repository)
+    {
         _logger = logger;
         _repository = repository;
 
@@ -24,34 +25,40 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(CreateAsync), _className);
 
-        try {
+        try
+        {
             await _repository.AddAsync(entity);
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetAsync), _className);
             _logger.LogTrace("Id: {id}", entity.Id);
 
             return;
         }
-        
+
         _logger.LogDebug("{methodName} finished in {className}", nameof(CreateAsync), _className);
     }
 
-    public async Task DeleteAsync(int id){
+    public async Task DeleteAsync(int id)
+    {
         _logger.LogInformation("{methodName} started in {className}", nameof(DeleteAsync), _className);
 
-        try {
+        try
+        {
             T? entity = await _repository.GetFirstOrDefaultAsync(e => e.Id == id);
-            
-            if(entity is null){
+
+            if (entity is null)
+            {
                 throw new ArgumentNullException("Entity was not found");
             }
 
             await _repository.DeleteAsync(entity);
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetAsync), _className);
-            _logger.LogTrace("Id: {id}",id);
+            _logger.LogTrace("Id: {id}", id);
 
             return;
         }
@@ -59,16 +66,18 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
         _logger.LogDebug("{methodName} finished in {className}", nameof(DeleteAsync), _className);
     }
 
-    public async Task DeleteAsync(ISpesification<T> spesification)
+    public async Task DeleteAsync(ISpecification<T, T> specification)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(DeleteAsync), _className);
 
-        try {
-            await _repository.DeleteAsync(spesification);
+        try
+        {
+            await _repository.DeleteAsync(specification);
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetAsync), _className);
-            _logger.LogTrace("Criteria: {criteria}", spesification.Criteria);
+            _logger.LogTrace("Criteria: {criteria}", specification.Criteria);
 
             return;
         }
@@ -83,10 +92,12 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
 
         IEnumerable<T>? entities = null;
 
-        try {
+        try
+        {
             entities = await _repository.GetAllAsync();
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetAllAsync), _className);
 
             return entities;
@@ -99,15 +110,17 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
     public async Task<T?> GetAsync(int id)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(GetAsync), _className);
-        
+
         T? entity = null;
 
-        try {
+        try
+        {
             entity = await _repository.GetFirstOrDefaultAsync(e => e.Id == id);
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetAsync), _className);
-            _logger.LogTrace("Id: {id}",id);
+            _logger.LogTrace("Id: {id}", id);
 
             return entity;
         }
@@ -117,18 +130,20 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
     }
 
 
-    public async Task<T?> GetFirstOrDefaultAsync(ISpesification<T> spesification)
+    public async Task<TResult?> GetFirstOrDefaultAsync<TResult>(ISpecification<T, TResult> specification)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(GetFirstOrDefaultAsync), _className);
 
-        T? entity = null;
+        TResult? entity = default;
 
-        try {
-            entity = await _repository.GetFirstOrDefaultAsync(spesification);
+        try
+        {
+            entity = await _repository.GetFirstOrDefaultAsync(specification);
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetFirstOrDefaultAsync), _className);
-            _logger.LogTrace("Criteria: {criteria}", spesification.Criteria);
+            _logger.LogTrace("Criteria: {criteria}", specification.Criteria);
 
             return entity;
         }
@@ -138,44 +153,48 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
         return entity;
     }
 
-    public async Task<IEnumerable<T>?> GetRangeAsync(ISpesification<T> spesification)
+    public async Task<IEnumerable<TResult>?> GetRangeAsync<TResult>(ISpecification<T, TResult> specification)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(GetRangeAsync), _className);
 
-        IEnumerable<T>? entities = null;
+        IEnumerable<TResult>? entities = null;
 
-        try {
-            entities = await _repository.GetRangeAsync(spesification);
+        try
+        {
+            entities = await _repository.GetRangeAsync(specification);
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetRangeAsync), _className);
-            _logger.LogTrace("Criteria: {criteria}", spesification.Criteria);
+            _logger.LogTrace("Criteria: {criteria}", specification.Criteria);
 
             return entities;
         }
 
-        _logger.LogInformation("{methodName} finished in {className}", nameof(GetRangeAsync), _className);
+        _logger.LogDebug("{methodName} finished in {className}", nameof(GetRangeAsync), _className);
 
         return entities;
     }
 
-    public async Task<T?> GetSingleOrDefaultAsync(ISpesification<T> spesification)
+    public async Task<TResult?> GetSingleOrDefaultAsync<TResult>(ISpecification<T, TResult> specification)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(GetSingleOrDefaultAsync), _className);
 
-        T? entity = null;
+        TResult? entity = default;
 
-        try {
-            entity = await _repository.GetSingleOrDefaultAsync(spesification);
+        try
+        {
+            entity = await _repository.GetSingleOrDefaultAsync(specification);
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetSingleOrDefaultAsync), _className);
-            _logger.LogTrace("Criteria: {criteria}", spesification.Criteria);
+            _logger.LogTrace("Criteria: {criteria}", specification.Criteria);
 
             return entity;
         }
 
-        _logger.LogInformation("{methodName} finished in {className}", nameof(GetSingleOrDefaultAsync), _className);
+        _logger.LogDebug("{methodName} finished in {className}", nameof(GetSingleOrDefaultAsync), _className);
 
         return entity;
     }
@@ -184,10 +203,12 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(UpdateAsync), _className);
 
-        try {
+        try
+        {
             await _repository.UpdateAsync(entity);
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(UpdateAsync), _className);
             _logger.LogTrace("Id: {id}", entity.Id);
 
