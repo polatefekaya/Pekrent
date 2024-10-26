@@ -1,4 +1,5 @@
 using System;
+using CarRental.Application.Interfaces.Services.Listing;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Api.Controllers.v1;
@@ -7,8 +8,11 @@ namespace CarRental.Api.Controllers.v1;
 public class ListingController : CustomControllerBase
 {
     private readonly ILogger<ListingController> _logger;
-    public ListingController(ILogger<ListingController> logger){
+    private readonly IListingService _listingService;
+
+    public ListingController(ILogger<ListingController> logger, IListingService listingService){
         _logger = logger;
+        _listingService = listingService;
     }
 
     [HttpGet]
@@ -28,4 +32,18 @@ public class ListingController : CustomControllerBase
         
     }
 
+    [HttpPut]
+    public async Task SetBookedCar(){
+        
+    }
+
+    [HttpPut]
+    public async Task SetLeftCar(){
+        
+    }
+
+    [HttpPut]
+    public async Task SetAllBooked(){
+        
+    }
 }

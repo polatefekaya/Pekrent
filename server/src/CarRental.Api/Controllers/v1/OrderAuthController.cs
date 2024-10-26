@@ -1,4 +1,5 @@
 using System;
+using CarRental.Application.Interfaces.Services.Order.Detail;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Api.Controllers.v1;
@@ -8,8 +9,10 @@ namespace CarRental.Api.Controllers.v1;
 public class OrderAuthController : CustomControllerBase
 {
     private readonly ILogger<OrderAuthController> _logger;
-    public OrderAuthController(ILogger<OrderAuthController> logger){
+    private readonly IOrderAuthService _orderAuthService;
+    public OrderAuthController(ILogger<OrderAuthController> logger, IOrderAuthService orderAuthService){
         _logger = logger;
+        _orderAuthService = orderAuthService;
     }
 
     [HttpGet]

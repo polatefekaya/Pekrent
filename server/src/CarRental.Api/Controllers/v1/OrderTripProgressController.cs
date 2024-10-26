@@ -1,4 +1,5 @@
 using System;
+using CarRental.Application.Interfaces.Services.Order.Detail.Progress;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Api.Controllers.v1;
@@ -8,8 +9,10 @@ namespace CarRental.Api.Controllers.v1;
 public class OrderTripProgressController : CustomControllerBase
 {
     private readonly ILogger<OrderTripProgressController> _logger;
-    public OrderTripProgressController(ILogger<OrderTripProgressController> logger){
+    private readonly IOrderTripProgressService _orderTripProgressService;
+    public OrderTripProgressController(ILogger<OrderTripProgressController> logger, IOrderTripProgressService orderTripProgressService){
         _logger = logger;
+        _orderTripProgressService = orderTripProgressService;
     }
 
     [HttpGet]

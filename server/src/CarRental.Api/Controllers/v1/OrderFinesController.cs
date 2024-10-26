@@ -1,4 +1,5 @@
 using System;
+using CarRental.Application.Interfaces.Services.Order.Fine;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.Api.Controllers.v1;
@@ -8,8 +9,10 @@ namespace CarRental.Api.Controllers.v1;
 public class OrderFinesController : CustomControllerBase
 {
     private readonly ILogger<OrderFinesController> _logger;
-    public OrderFinesController(ILogger<OrderFinesController> logger){
+    private readonly IOrderFineService _orderFineService;
+    public OrderFinesController(ILogger<OrderFinesController> logger, IOrderFineService orderFineService){
         _logger = logger;
+        _orderFineService = orderFineService;
     }
 
     [HttpGet]
