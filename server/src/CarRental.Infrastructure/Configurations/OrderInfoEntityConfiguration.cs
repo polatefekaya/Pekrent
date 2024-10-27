@@ -9,6 +9,12 @@ public class OrderInfoEntityConfiguration : IEntityTypeConfiguration<OrderInfoEn
 {
     public void Configure(EntityTypeBuilder<OrderInfoEntity> builder)
     {
-        
+        builder
+            .HasOne(oi => oi.Order)
+            .WithOne(o => o.Info)
+            .HasForeignKey<OrderEntity>(o => o.InfoId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        //TODO continue the entity type configurations
     }
 }

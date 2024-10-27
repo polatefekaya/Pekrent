@@ -9,6 +9,9 @@ public class OrderAuthEntityConfiguration : IEntityTypeConfiguration<OrderAuthEn
 {
     public void Configure(EntityTypeBuilder<OrderAuthEntity> builder)
     {
-        
+        builder
+            .HasOne(oa => oa.Order)
+            .WithOne(o => o.Authentication)
+            .HasForeignKey<OrderEntity>(o => o.AuthenticationId);
     }
 }

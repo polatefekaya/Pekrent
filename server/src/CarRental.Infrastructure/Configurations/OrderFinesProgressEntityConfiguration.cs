@@ -9,6 +9,9 @@ public class OrderFinesProgressEntityConfiguration : IEntityTypeConfiguration<Or
 {
     public void Configure(EntityTypeBuilder<OrderFinesProgressEntity> builder)
     {
-        
+        builder
+            .HasOne(ofp => ofp.Progress)
+            .WithOne(op => op.OrderFinesProgress)
+            .HasForeignKey<OrderProgressEntity>(op => op.OrderFinesProgressId);
     }
 }

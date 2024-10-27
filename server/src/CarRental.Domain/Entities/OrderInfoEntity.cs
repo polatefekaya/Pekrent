@@ -8,6 +8,7 @@ namespace CarRental.Domain.Entities;
 [Table("order_infos", Schema = "order")]
 public class OrderInfoEntity : BaseEntity
 {
+    public int OrderId {get; set;}
     public int ListingId {get; set;}
     public int PriceId {get; set;}
     public DateTime From {get; set;}
@@ -17,4 +18,5 @@ public class OrderInfoEntity : BaseEntity
 
     public ListingEntity Listing {get; set;} = null!;
     public PriceEntity Price {get; set;} = null!;
+    public OrderEntity Order {get; set;} = null!;
 }

@@ -30,5 +30,5 @@ public class CarEntity : BaseEntity
     public string? Usecase {get; set;}
     public int TrunkCapacity {get; set;}
 
-    public ListingEntity Listing {get; set;} = null!;
+    public List<ListingEntity> Listings {get; set;} = [];
 }
