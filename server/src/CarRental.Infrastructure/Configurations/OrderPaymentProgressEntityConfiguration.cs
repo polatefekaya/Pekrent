@@ -9,6 +9,9 @@ public class OrderPaymentProgressEntityConfiguration : IEntityTypeConfiguration<
 {
     public void Configure(EntityTypeBuilder<OrderPaymentProgressEntity> builder)
     {
-        
+        builder
+            .HasOne(opp => opp.Progress)
+            .WithOne(p => p.OrderPaymentProgress)
+            .HasForeignKey<OrderProgressEntity>(p => p.OrderPaymentProgressId);
     }
 }

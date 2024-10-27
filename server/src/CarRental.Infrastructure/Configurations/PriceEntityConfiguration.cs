@@ -9,6 +9,16 @@ public class PriceEntityConfiguration : IEntityTypeConfiguration<PriceEntity>
 {
     public void Configure(EntityTypeBuilder<PriceEntity> builder)
     {
-        
+        builder
+            .HasOne(p => p.Listing)
+            .WithMany(l => l.Prices)
+            .HasForeignKey(p => p.ListingId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        builder
+            .HasMany(p => p.OrderInfos)
+            .WithOne(oi => oi.Price)
+            .HasForeignKey(oi => oi.PriceId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

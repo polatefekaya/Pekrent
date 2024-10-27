@@ -9,6 +9,9 @@ public class OrderTripProgressEntityConfiguration : IEntityTypeConfiguration<Ord
 {
     public void Configure(EntityTypeBuilder<OrderTripProgressEntity> builder)
     {
-        
+        builder
+            .HasOne(otp => otp.Progress)
+            .WithOne(op => op.OrderTripProgress)
+            .HasForeignKey<OrderProgressEntity>(op => op.OrderTripProgressId);
     }
 }

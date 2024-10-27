@@ -30,5 +30,10 @@ public class ListingEntityConfiguration : IEntityTypeConfiguration<ListingEntity
             .HasMany(l => l.Savings)
             .WithOne(s => s.Listing)
             .HasForeignKey(s => s.ListingId);
+
+        builder
+            .HasMany(l => l.OrderInfos)
+            .WithOne(oi => oi.Listing)
+            .HasForeignKey(oi => oi.ListingId);
     }
 }

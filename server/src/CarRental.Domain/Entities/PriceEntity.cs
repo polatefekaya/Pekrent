@@ -24,4 +24,5 @@ public class PriceEntity : BaseEntity
     public string? Day {get; set;}
 
     public ListingEntity Listing {get; set;} = null!; 
+    public List<OrderInfoEntity>? OrderInfos {get; set;} = [];
 }

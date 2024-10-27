@@ -22,4 +22,5 @@ public class ListingEntity : BaseEntity
     public CarEntity Car {get; set;} = null!;
     public List<PriceEntity>? Prices {get; set;} = [];
     public List<SavedEntity>? Savings {get; set;} = [];
+    public List<OrderInfoEntity>? OrderInfos {get; set;} = [];
 }
