@@ -19,6 +19,7 @@ public class ListingEntity : BaseEntity
     public bool CanGoOuterCity {get; set;}
 
     public UserEntity User {get; set;} = null!;
-    public CarEntity Car {get; set;} = null!
-    ;
+    public CarEntity Car {get; set;} = null!;
+    public List<PriceEntity>? Prices {get; set;} = [];
+    public List<SavedEntity>? Savings {get; set;} = [];
 }

@@ -9,6 +9,9 @@ public class AvailabilityEntityConfiguration : IEntityTypeConfiguration<Availabi
 {
     public void Configure(EntityTypeBuilder<AvailabilityEntity> builder)
     {
-        
+        builder
+            .HasOne(a => a.User)
+            .WithOne(e => e.Availability)
+            .HasForeignKey<UserEntity>(a => a.AvailabilityId);
     }
 }

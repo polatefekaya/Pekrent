@@ -8,6 +8,7 @@ namespace CarRental.Domain.Entities;
 [Table("prices", Schema = "listing")]
 public class PriceEntity : BaseEntity
 {
+    public int ListingId {get; set;}
     public decimal HourlyRate {get; set;}
     public decimal DailyRate {get; set;}
     public decimal WeeklyRate {get; set;}
@@ -21,4 +22,6 @@ public class PriceEntity : BaseEntity
     public bool WeekendPrice {get; set;}
     public bool ExplicitDay {get; set;}
     public string? Day {get; set;}
+
+    public ListingEntity Listing {get; set;} = null!; 
 }

@@ -9,6 +9,9 @@ public class BlacklistEntityConfiguration : IEntityTypeConfiguration<BlacklistEn
 {
     public void Configure(EntityTypeBuilder<BlacklistEntity> builder)
     {
-        
+        builder
+            .HasOne(a => a.User)
+            .WithOne(e => e.Blacklist)
+            .HasForeignKey<UserEntity>(a => a.BlacklistId);
     }
 }

@@ -9,6 +9,9 @@ public class CarEntityConfiguration : IEntityTypeConfiguration<CarEntity>
 {
     public void Configure(EntityTypeBuilder<CarEntity> builder)
     {
-        
+        builder
+            .HasOne(c => c.Listing)
+            .WithOne(l => l.Car)
+            .HasForeignKey<ListingEntity>(l => l.CarId);
     }
 }
