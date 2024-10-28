@@ -1,0 +1,16 @@
+name: First
+trigger:
+    branches:
+        include:
+            - main
+
+jobs:
+    - job: Build
+      pool:
+        vmImage: "ubuntu-latest"
+      steps:
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: "build"
+            projects: ""
+      
