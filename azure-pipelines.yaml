@@ -64,8 +64,8 @@ stages:
         
         - task: Cache@2
           inputs:
-            key: 'npm package-lock.json'
-            path: '$(Pipeline.Workspace)/node_modules'
+            key: 'npm ./client/package-lock.json'
+            path: '$(Pipeline.Workspace)/client/node_modules'
 
         - script: |
             cd client
@@ -116,7 +116,6 @@ stages:
               repository: '$(serverImageName)'
               Dockerfile: 'server/Dockerfile'
               tags: |
-                ${Build.BuildId}
                 latest
             displayName: "Build and Push Server Container"
         
