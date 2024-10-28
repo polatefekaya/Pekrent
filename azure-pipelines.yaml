@@ -8,9 +8,10 @@ variables:
   kubernetesNamespace: "default"
   kubernetesCluster: "carRentalServerKCluster"
   resourceGroup: "Learning"
-  azureContainerRegistry: "carrentalserverkclusterregistry.azurecr.io"
-  azureServiceConnection: "carRentalRegistryServiceConnection"
-  azureStaticWebAppsApiToken: "token"
+  azureContainerRegistry: "$(containerRegistryUri)"
+  azureServiceConnection: "$(serviceConnectionName)"
+  azureStaticWebAppsApiToken: "$(AzureStaticWebAppDeploymentToken)"
+
 
 trigger:
     branches:
