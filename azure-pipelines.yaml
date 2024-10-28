@@ -8,9 +8,6 @@ variables:
   kubernetesNamespace: "default"
   kubernetesCluster: "carRentalServerKCluster"
   resourceGroup: "Learning"
-  azureContainerRegistry: "$(containerRegistryUri)"
-  azureServiceConnection: "$(serviceConnectionName)"
-  azureStaticWebAppsApiToken: "$(AzureStaticWebAppDeploymentToken)"
 
 
 trigger:
@@ -75,7 +72,7 @@ stages:
         - task: AzureStaticWebApp@0
           inputs:
             app_location: "client/build"
-            azure_static_web_apps_api_token: $(azureStaticWebAppsApiToken)  # Token from Azure portal
+            azure_static_web_apps_api_token: $(AzureStaticWebAppDeploymentToken)  # Token from Azure portal
           displayName: 'Deploy Client to Azure Static Web App'
 
   - stage: Server_Build_and_Deploy
@@ -96,7 +93,7 @@ stages:
           - task: Docker@2
             inputs:
               command: login
-              containerRegistry: '$(azureContainerRegistry)'
+              containerRegistry: '$(containerRegistryUri)'
 
           - task: Docker@2
             inputs:
