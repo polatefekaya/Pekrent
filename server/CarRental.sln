@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C4FEBC1F-3CB2-4742-9E53-DE9BCF8A5AD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Api", "src\CarRental.Api\CarRental.Api.csproj", "{C9D75641-10CD-40F0-A984-C4B58AB1301F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Application", "src\CarRental.Application\CarRental.Application.csproj", "{42E7F776-349D-4F63-9C81-94C057D8195E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Domain", "src\CarRental.Domain\CarRental.Domain.csproj", "{91D7C0E3-CE6A-473C-91CA-0A5377816B6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Fines", "src\CarRental.Fines\CarRental.Fines.csproj", "{AE13CA23-F9A1-4E85-8510-6BAE3473FCF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Infrastructure", "src\CarRental.Infrastructure\CarRental.Infrastructure.csproj", "{431BF563-8ABA-4FC6-936A-3B108F42BDE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Payment", "src\CarRental.Payment\CarRental.Payment.csproj", "{089166CD-C407-4A97-B0DA-75DF2F9A2A5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.GeoSpatial", "src\CarRental.GeoSpatial\CarRental.GeoSpatial.csproj", "{AF4A0585-C3C3-43FE-AD27-BB2D41E8A717}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9D75641-10CD-40F0-A984-C4B58AB1301F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D75641-10CD-40F0-A984-C4B58AB1301F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D75641-10CD-40F0-A984-C4B58AB1301F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D75641-10CD-40F0-A984-C4B58AB1301F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42E7F776-349D-4F63-9C81-94C057D8195E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E7F776-349D-4F63-9C81-94C057D8195E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E7F776-349D-4F63-9C81-94C057D8195E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E7F776-349D-4F63-9C81-94C057D8195E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91D7C0E3-CE6A-473C-91CA-0A5377816B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91D7C0E3-CE6A-473C-91CA-0A5377816B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91D7C0E3-CE6A-473C-91CA-0A5377816B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91D7C0E3-CE6A-473C-91CA-0A5377816B6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE13CA23-F9A1-4E85-8510-6BAE3473FCF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE13CA23-F9A1-4E85-8510-6BAE3473FCF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE13CA23-F9A1-4E85-8510-6BAE3473FCF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE13CA23-F9A1-4E85-8510-6BAE3473FCF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{431BF563-8ABA-4FC6-936A-3B108F42BDE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431BF563-8ABA-4FC6-936A-3B108F42BDE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431BF563-8ABA-4FC6-936A-3B108F42BDE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431BF563-8ABA-4FC6-936A-3B108F42BDE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{089166CD-C407-4A97-B0DA-75DF2F9A2A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089166CD-C407-4A97-B0DA-75DF2F9A2A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089166CD-C407-4A97-B0DA-75DF2F9A2A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089166CD-C407-4A97-B0DA-75DF2F9A2A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF4A0585-C3C3-43FE-AD27-BB2D41E8A717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4A0585-C3C3-43FE-AD27-BB2D41E8A717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4A0585-C3C3-43FE-AD27-BB2D41E8A717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4A0585-C3C3-43FE-AD27-BB2D41E8A717}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C9D75641-10CD-40F0-A984-C4B58AB1301F} = {C4FEBC1F-3CB2-4742-9E53-DE9BCF8A5AD4}
+		{42E7F776-349D-4F63-9C81-94C057D8195E} = {C4FEBC1F-3CB2-4742-9E53-DE9BCF8A5AD4}
+		{91D7C0E3-CE6A-473C-91CA-0A5377816B6B} = {C4FEBC1F-3CB2-4742-9E53-DE9BCF8A5AD4}
+		{AE13CA23-F9A1-4E85-8510-6BAE3473FCF0} = {C4FEBC1F-3CB2-4742-9E53-DE9BCF8A5AD4}
+		{431BF563-8ABA-4FC6-936A-3B108F42BDE5} = {C4FEBC1F-3CB2-4742-9E53-DE9BCF8A5AD4}
+		{089166CD-C407-4A97-B0DA-75DF2F9A2A5D} = {C4FEBC1F-3CB2-4742-9E53-DE9BCF8A5AD4}
+		{AF4A0585-C3C3-43FE-AD27-BB2D41E8A717} = {C4FEBC1F-3CB2-4742-9E53-DE9BCF8A5AD4}
+	EndGlobalSection
+EndGlobal

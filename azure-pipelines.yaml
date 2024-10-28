@@ -1,0 +1,112 @@
+name: carAppPipeline
+
+variables:
+  serverConfiguration: "Release"
+  dotnetVersion: "8.0"
+  clientImageName: "carRentalClient"
+  serverImageName: "carRentalServer"
+  kubernetesNamespace: "default"
+  kubernetesCluster: "carRentalServerKCluster"
+  resourceGroup: "Learning"
+  azureContainerRegistry: "carrentalserverkclusterregistry.azurecr.io"
+  azureServiceConnection: "carRentalRegistryServiceConnection"
+  azureStaticWebAppsApiToken: "token"
+
+trigger:
+    branches:
+        include:
+            - main
+    paths:
+      include:
+        - client/**
+        - server/**
+
+stages:
+  - stage: Client_Build_and_Deploy
+    displayName: "Build and Deploy React Client"
+    condition: and(succeeded(), changes['client/**/*'])
+    jobs:
+      - job: Build_and_Deploy_Client
+        displayName: "Build React Client"
+        pool:
+          vmImage: "ubuntu-latest"
+        steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: "22.0"
+        
+        - task: Cache@2
+          inputs:
+            key: 'npm|$(Agent.OS)|package-lock.json'
+            path: '$(Pipeline.Workspace)/node_modules'
+
+        - script: |
+            cd client
+            npm ci
+            npm run build
+          displayName: "Install Dependencies and Build Client"
+
+        # - task: Docker@2
+        #   inputs:
+        #     command: "buildAndPush"
+        #     repository: '$(clientImageName)'
+        #     Dockerfile: 'client/Dockerfile'
+        #     tags: |
+        #       $(Build.BuildId)
+        #       latest
+        #   displayName: "Build and Push Client Container"
+
+        - task: AzureStaticWebApp@0
+          inputs:
+            app_location: "client/build"
+            azure_static_web_apps_api_token: $(azureStaticWebAppsApiToken)  # Token from Azure portal
+          displayName: 'Deploy Client to Azure Static Web App'
+
+  - stage: Server_Build_and_Deploy
+    displayName: "Build and Deploy .Net Server"
+    condition: and(succeeded(), changes['server/**/*'])
+    jobs:
+      - job: Build_Server
+        displayName: "Build and Push Server Container"
+        steps:
+          - checkout: self
+
+          - task: UseDotNet@2
+            inputs:
+              packageType: "sdk"
+              version: "8.x"
+            displayName: "Set up .Net Core SDK for Server"
+
+          - task: Docker@2
+            inputs:
+              command: login
+              containerRegistry: '$(azureContainerRegistry)'
+
+          - task: Docker@2
+            inputs:
+              command: "buildAndPush"
+              repository: '$(serverImageName)'
+              Dockerfile: 'server/Dockerfile'
+              tags: |
+                ${Build.BuildId}
+                latest
+            displayName: "Build and Push Server Container"
+        
+      - job: Deploy_Server
+        displayName: "Deploy Server to Kubernetes"
+        dependsOn: Build_Server
+        steps:
+          - download: current
+
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: "Learning"
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az aks get-credentials --resource-group $(resourceGroup) --name $(kubernetesCluster) --overwrite-existing
+                kubectl apply -f server/k8s/deployment.yaml
+                kubectl apply -f server/k8s/service.yaml
+            displayName: "Deploy Server to Kubernetes Using Azure CLI"
+            
+
