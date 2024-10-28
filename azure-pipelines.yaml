@@ -28,10 +28,10 @@ stages:
         steps:
           - checkout: self
           - script: |
-              if git diff --name-only HEAD~1 | grep '^client/'; then
+              if git diff --unshallow --name-only HEAD~1 | grep '^client/'; then
                 echo "##vso[task.setvariable variable=ClientChanged;isOutput=true]true"
               fi
-              if git diff --name-only HEAD~1 | grep '^server/'; then
+              if git diff --unshallow --name-only HEAD~1 | grep '^server/'; then
                 echo "##vso[task.setvariable variable=ServerChanged;isOutput=true]true"
               fi
             name: CheckChanges
