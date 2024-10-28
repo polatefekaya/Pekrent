@@ -8,8 +8,8 @@ variables:
   kubernetesNamespace: "default"
   kubernetesCluster: "carRentalServerKCluster"
   resourceGroup: "Learning"
-  azureContainerRegistry: "carrentalserverkclusterregistry.azurecr.io"
-  azureServiceConnection: "carRentalRegistryServiceConnection"
+  azureContainerRegistry: "$(containerRegistryUri)"
+  azureServiceConnection: "$(serviceConnectionName)"
   azureStaticWebAppsApiToken: "$(AzureStaticWebAppDeploymentToken)"
 
 
