@@ -46,15 +46,12 @@ stages:
             displayName: "Check for Client and Server Changes"
         
           # Debugging step to output the values of ClientChanged and ServerChanged
-          - script: |
-              echo "ClientChanged: $(ClientChanged)"
-              echo "ServerChanged: $(ServerChanged)"
-            displayName: "Debug Output Variables"
+
 
   - stage: Client_Build_and_Deploy
     dependsOn: Determine_Changes
     displayName: "Build and Deploy React Client"
-    condition: eq(dependencies.Determine_Changes.outputs['Check_Changes.ClientChanged'], 'true')
+    # condition: eq(dependencies.Determine_Changes.outputs['Check_Changes.ClientChanged'], 'true')
     jobs:
       - job: Build_and_Deploy_Client
         displayName: "Build React Client"
@@ -95,7 +92,7 @@ stages:
   - stage: Server_Build_and_Deploy
     displayName: "Build and Deploy .Net Server"
     dependsOn: Determine_Changes
-    condition: eq(dependencies.Determine_Changes.outputs['Check_Changes.ServerChanged'], 'true')
+    # condition: eq(dependencies.Determine_Changes.outputs['Check_Changes.ServerChanged'], 'true')
     jobs:
       - job: Build_Server
         displayName: "Build and Push Server Container"
