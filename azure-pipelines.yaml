@@ -39,6 +39,7 @@ stages:
             displayName: "Check for Client and Server Changes"
 
   - stage: Client_Build_and_Deploy
+    dependsOn: Determine_Changes
     displayName: "Build and Deploy React Client"
     condition: eq(dependencies.Determine_Changes.outputs['CheckChanges.ClientChanged'], 'true')
     jobs:
@@ -80,6 +81,7 @@ stages:
 
   - stage: Server_Build_and_Deploy
     displayName: "Build and Deploy .Net Server"
+    dependsOn: Determine_Changes
     condition: eq(dependencies.Determine_Changes.outputs['CheckChanges.ServerChanged'], 'true')
     jobs:
       - job: Build_Server
