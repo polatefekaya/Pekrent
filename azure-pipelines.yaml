@@ -31,9 +31,13 @@ stages:
           - script: |
               if git diff --name-only HEAD~1 | grep '^client/'; then
                 echo "##vso[task.setvariable variable=ClientChanged;isOutput=true]true"
+              else
+                echo "##vso[task.setvariable variable=ClientChanged;isOutput=true]false"
               fi
               if git diff --name-only HEAD~1 | grep '^server/'; then
                 echo "##vso[task.setvariable variable=ServerChanged;isOutput=true]true"
+              else
+                echo "##vso[task.setvariable variable=ServerChanged;isOutput=true]false"
               fi
             name: CheckChanges
             displayName: "Check for Client and Server Changes"
@@ -41,7 +45,7 @@ stages:
   - stage: Client_Build_and_Deploy
     dependsOn: Determine_Changes
     displayName: "Build and Deploy React Client"
-    condition: eq(dependencies.Determine_Changes.outputs['CheckChanges.ClientChanged'], 'true')
+    condition: eq(dependencies.Determine_Changes.outputs['Check_Changes.ClientChanged'], 'true')
     jobs:
       - job: Build_and_Deploy_Client
         displayName: "Build React Client"
@@ -82,7 +86,7 @@ stages:
   - stage: Server_Build_and_Deploy
     displayName: "Build and Deploy .Net Server"
     dependsOn: Determine_Changes
-    condition: eq(dependencies.Determine_Changes.outputs['CheckChanges.ServerChanged'], 'true')
+    condition: eq(dependencies.Determine_Changes.outputs['Check_Changes.ServerChanged'], 'true')
     jobs:
       - job: Build_Server
         displayName: "Build and Push Server Container"
