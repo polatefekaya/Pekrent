@@ -10,7 +10,8 @@ variables:
   resourceGroup: "Learning"
   azureContainerRegistry: "carrentalserverkclusterregistry.azurecr.io"
   azureServiceConnection: "carRentalRegistryServiceConnection"
-  azureStaticWebAppsApiToken: "token"
+  azureStaticWebAppsApiToken: "$(AzureStaticWebAppDeploymentToken)"
+
 
 trigger:
     branches:
