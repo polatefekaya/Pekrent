@@ -64,7 +64,7 @@ stages:
         
         - task: Cache@2
           inputs:
-            key: 'npm ./client/package-lock.json'
+            key: 'npm|$(Agent.OS)|package-lock.json'
             path: '$(Pipeline.Workspace)/client/node_modules'
 
         - script: |
