@@ -1,23 +1,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 WORKDIR /src
-
 COPY *.sln ./
-
-COPY src/*/*.csproj ./src/
-
-RUN for proj in $(find . -name "*.csproj"); do dotnet restore $proj; done
-
-COPY . .
-
-RUN dotnet publish -c Release -o /out
+COPY src/ ./src/
+RUN dotnet restore
+RUN dotnet publish -c Release -o /out --no-restore --verbosity detailed
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-
 WORKDIR /app
-
 COPY --from=build /out .
 
 EXPOSE 80
-
-ENTRYPOINT ["dotnet", "CarRental.Api.dll"]  
+ENTRYPOINT ["dotnet", "CarRental.Api.dll"]
