@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: carRentalServerService
+  name: carrentalserviceservice
 spec:
   type: LoadBalancer
   selector:
-    app: carRentalServer
+    app: carrentalservice
   ports:
     - port: 80
       targetPort: 80

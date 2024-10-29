@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: carRentalServerDeployment
+  name: carrentalserverdeployment
   labels:
-    app: carRentalServer
+    app: carrentalservice
 
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: carRentalServer
+      app: carrentalservice
   template:
     metadata:
       labels:
-        app: carRentalServer
+        app: carrentalservice
     spec:
       containers:
-        - name: carRentalServer
-          image: carrentalserverkclusterregistry.azurecr.io/carRentalServer:latest
+        - name: carrentalservice
+          image: carrentalserverkclusterregistry.azurecr.io/carrentalservice:latest
           ports:
             - containerPort: 80
           resources:
