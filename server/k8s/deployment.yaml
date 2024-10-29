@@ -30,3 +30,5 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "5000"
