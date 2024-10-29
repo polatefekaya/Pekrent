@@ -19,13 +19,13 @@ spec:
         - name: carrentalserver
           image: carrentalserverkclusterregistry.azurecr.io/carrentalserver:latest
           ports:
-            - containerPort: 80
+            - containerPort: 5000
           resources:
             requests:
-              memory: "256Mi"
+              memory: "1Gi"
               cpu: "500m"
             limits:
-              memory: "512Mi"
+              memory: "5Gi"
               cpu: "1"
           env:
             - name: ASPNETCORE_ENVIRONMENT
