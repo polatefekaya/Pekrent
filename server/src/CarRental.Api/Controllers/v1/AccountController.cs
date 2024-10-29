@@ -21,11 +21,54 @@ public class AccountController : CustomControllerBase
     }
     
     [HttpPost]
-    public async Task AddAsync(){
+    public async Task Login(){
     }
 
-    [HttpPut]
-    public async Task UpdateAsync(){
+    [HttpPost]
+    public async Task Register(){
+    }
+
+    [HttpGet]
+    public async Task Logout(){
+    }
+
+    [HttpPost]
+    public async Task SendTwoFactorAuth(){
+        
+    }
+
+    [HttpPost]
+    public async Task ManageTwoFactorVerification(){
+        
+    }
+
+    [HttpPost]
+    public async Task VerifyTwoFactorAuth(){
+        
+    }
+
+    [HttpPost]
+    public async Task SendConfirmationEmail(){
+        
+    }
+
+    [HttpPost]
+    public async Task ConfirmEmail(){
+        
+    }
+
+    [HttpPost]
+    public async Task ResetForgottenPassword(){
+        
+    }
+
+    [HttpPost]
+    public async Task ForgotPassword(){
+        
+    }
+
+    [HttpPost]
+    public async Task ChangePassword(){
         
     }
 }
