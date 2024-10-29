@@ -2,9 +2,9 @@ name: carAppPipeline
 
 variables:
   - name: clientImageName
-    value: "carRentalClient"
+    value: "carrentalclient"
   - name: serverImageName
-    value: "carRentalServer"
+    value: "carrentalserver"
   - name: kubernetesCluster
     value: "carRentalServerKCluster"
   - name: resourceGroup
