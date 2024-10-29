@@ -131,6 +131,8 @@ stages:
               scriptType: "bash"
               scriptLocation: "inlineScript"
               inlineScript: |
+                kubectl get namespace production || kubectl create namespace production
+
                 az aks get-credentials --resource-group $(resourceGroup) --name $(kubernetesCluster) --overwrite-existing
                 kubectl apply -f server/k8s/deployment.yaml
                 kubectl apply -f server/k8s/service.yaml
