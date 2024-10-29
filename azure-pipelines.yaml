@@ -62,14 +62,14 @@ stages:
           inputs:
             versionSpec: "22.0"
         
-        - task: Cache@2
-          inputs:
-            key: 'npm|$(Agent.OS)|package-lock.json'
-            path: '$(Pipeline.Workspace)/client/node_modules'
+        # - task: Cache@2
+        #   inputs:
+        #     key: 'npm|$(Agent.OS)|package-lock.json'
+        #     path: '$(Pipeline.Workspace)/client/node_modules'
 
         - script: |
             cd client
-            npm ci
+            npm install
             npm run build
           displayName: "Install Dependencies and Build Client"
 
