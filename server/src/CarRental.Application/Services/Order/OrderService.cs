@@ -1,5 +1,6 @@
 using System;
 using System.Linq.Expressions;
+using CarRental.Application.Interfaces.Repository.Spesifications;
 using CarRental.Application.Interfaces.Services.Order;
 using CarRental.Domain.Entities;
 
@@ -18,6 +19,11 @@ public class OrderService : IOrderService
     }
 
     public Task DeleteAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteAsync(ISpecification<OrderEntity, OrderEntity> specification)
     {
         throw new NotImplementedException();
     }
@@ -42,7 +48,22 @@ public class OrderService : IOrderService
         throw new NotImplementedException();
     }
 
+    public Task<TResult?> GetFirstOrDefaultAsync<TResult>(ISpecification<OrderEntity, TResult> specification)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<IEnumerable<OrderEntity>?> GetRangeAsync(int[] ids)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<TResult>?> GetRangeAsync<TResult>(ISpecification<OrderEntity, TResult> specification)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<TResult?> GetSingleOrDefaultAsync<TResult>(ISpecification<OrderEntity, TResult> specification)
     {
         throw new NotImplementedException();
     }
