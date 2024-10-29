@@ -3,21 +3,21 @@ kind: Deployment
 metadata:
   name: carrentalserverdeployment
   labels:
-    app: carrentalservice
+    app: carrentalserver
 
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: carrentalservice
+      app: carrentalserver
   template:
     metadata:
       labels:
-        app: carrentalservice
+        app: carrentalserver
     spec:
       containers:
-        - name: carrentalservice
-          image: carrentalserverkclusterregistry.azurecr.io/carrentalservice:latest
+        - name: carrentalserver
+          image: carrentalserverkclusterregistry.azurecr.io/carrentalserver:latest
           ports:
             - containerPort: 80
           resources:
