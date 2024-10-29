@@ -5,4 +5,4 @@ COPY package.json package-lock.json ./
 RUN npm ci && npm run builder
 FROM nginx:1.23-alpine
 COPY --from=builder /app/build /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 5000

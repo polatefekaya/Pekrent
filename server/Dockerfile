@@ -10,5 +10,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /out .
 
-EXPOSE 80
+EXPOSE 5000
 ENTRYPOINT ["dotnet", "CarRental.Api.dll"]
