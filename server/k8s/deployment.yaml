@@ -17,7 +17,7 @@ spec:
         app: carRentalServer
     spec:
       containers:
-        - name: carRentalServerContainer
+        - name: carRentalServer
           image: carrentalserverkclusterregistry.azurecr.io/carRentalServer:latest
           ports:
             - containerPort: 80
