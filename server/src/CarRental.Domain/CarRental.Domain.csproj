@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
+    <Folder Include="DTO\Car\" />
+    <Folder Include="DTO\Order\Fine\" />
+    <Folder Include="DTO\Price\" />
+    <Folder Include="DTO\Saved\" />
+    <Folder Include="DTO\User\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

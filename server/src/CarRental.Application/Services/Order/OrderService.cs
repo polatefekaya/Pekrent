@@ -1,75 +1,17 @@
 using System;
 using System.Linq.Expressions;
+using CarRental.Application.Interfaces.Repository;
 using CarRental.Application.Interfaces.Repository.Spesifications;
 using CarRental.Application.Interfaces.Services.Order;
+using CarRental.Domain.DTO;
 using CarRental.Domain.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace CarRental.Application.Services.Order;
 
-public class OrderService : IOrderService
+public class OrderService : CrudService<OrderEntity>, IOrderService
 {
-    public Task CreateAsync(OrderEntity entity)
-    {
-        //After succesfull Order creation
-        //Create a Order Progress
-        //Create a Order Auth
-        //Create a OrderInfo
-        //after then, saveChanges
-        throw new NotImplementedException();
-    }
+    public OrderService(ILogger<OrderService> logger, IGenericRepository<OrderEntity> repository) : base(logger, repository){
 
-    public Task DeleteAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteAsync(ISpecification<OrderEntity, OrderEntity> specification)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteRangeAsync(int[] ids)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<IEnumerable<OrderEntity>?> GetAllAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<OrderEntity?> GetAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<OrderEntity?> GetFirstOrDefaultAsync(Expression<Func<OrderEntity, bool>> predicate)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<TResult?> GetFirstOrDefaultAsync<TResult>(ISpecification<OrderEntity, TResult> specification)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<IEnumerable<OrderEntity>?> GetRangeAsync(int[] ids)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<IEnumerable<TResult>?> GetRangeAsync<TResult>(ISpecification<OrderEntity, TResult> specification)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<TResult?> GetSingleOrDefaultAsync<TResult>(ISpecification<OrderEntity, TResult> specification)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateAsync(OrderEntity entity)
-    {
-        throw new NotImplementedException();
     }
 }
