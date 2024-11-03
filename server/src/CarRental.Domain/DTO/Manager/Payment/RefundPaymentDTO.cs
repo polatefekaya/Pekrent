@@ -1,6 +1,6 @@
-namespace CarRental.Payment.Data.DTO;
+namespace CarRental.Domain.DTO.Manager.Payment;
 
-public record class RefundDTO
+public record class RefundPaymentDTO
 {
     public int ChargeId {get; init;}
     public int UserId {get; init;}

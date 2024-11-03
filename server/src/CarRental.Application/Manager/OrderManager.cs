@@ -12,12 +12,10 @@ namespace CarRental.Application.Manager;
 public class OrderManager : IOrderManager
 {
     private readonly ILogger<OrderManager> _logger;
-    private readonly IPaymentService _paymentService;
     private readonly IOrderService _orderService;
     private readonly string _className;
-    public OrderManager(ILogger<OrderManager> logger, IPaymentService paymentService, IOrderService orderService){
+    public OrderManager(ILogger<OrderManager> logger, IOrderService orderService){
         _logger = logger;
-        _paymentService = paymentService;
         _orderService = orderService;
 
         _className = "OrderManager";
@@ -30,6 +28,8 @@ public class OrderManager : IOrderManager
             Entity = dto.Entity
         };
         await _orderService.UpdateAsync(updateDto);
+
+        _logger.LogDebug("{methodName} Order Process in {className} is Finished", nameof(Cancel), _className);
     }
 
     public async Task Close(CloseOrderDTO<OrderEntity> dto)
@@ -41,6 +41,8 @@ public class OrderManager : IOrderManager
         };
 
         await _orderService.UpdateAsync(updateDto);
+
+        _logger.LogDebug("{methodName} Order Process in {className} is Finished", nameof(Close), _className);
     }
 
     public async Task Start(StartOrderDTO<OrderEntity> dto)
@@ -52,5 +54,7 @@ public class OrderManager : IOrderManager
         };
 
         await _orderService.CreateAsync(addDto);
+
+        _logger.LogDebug("{methodName} Order Process in {className} is Finished", nameof(Start), _className);
     }
 }
