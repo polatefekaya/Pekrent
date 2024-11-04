@@ -12,12 +12,12 @@ public class FinesService : IFinesService
         throw new NotImplementedException();
     }
 
-    public Task Delete()
+    public Task Delete(DeleteFineDTO dto)
     {
         throw new NotImplementedException();
     }
 
-    public Task Update()
+    public Task Update(UpdateFineDTO dto)
     {
         throw new NotImplementedException();
     }
