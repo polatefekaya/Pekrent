@@ -1,3 +1,4 @@
+import TopNavigationBar from "@/components/meui/top-navbar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export default function RootLayout({
   }>){
     return(
         <>
+        <TopNavigationBar mode=""/>
         {children}
         </>
     );
