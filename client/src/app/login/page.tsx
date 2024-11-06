@@ -7,6 +7,7 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { Box, Center, Fieldset, Heading, Input, Link, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const [firstName,setFirstName] = useState("");
@@ -17,10 +18,12 @@ export default function LoginPage() {
     const [city, setCity] = useState("Istanbul");
     const [country, setCountry] = useState("Turkiye");
     const [isSubmitted, setSubmitted] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = () => {
         console.log(firstName, " ", lastName, " ", email, " ", password, " ", province, " ", city, " ", country);
         setSubmitted(true)
+        router.push("/explore")
     }
 
     return (
