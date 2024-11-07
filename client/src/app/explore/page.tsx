@@ -9,6 +9,7 @@ import { Suspense, useState } from "react";
 export default function Explore() {
     console.log("before usefetchdata");
     const filterData = useFetchData('/store/filterData.json');
+    const listingData = useFetchData('/store/entryData.json');
     console.log("after usefetchdata");
     //const [filterData, setFilterData] = useState([]);
   return (
@@ -21,9 +22,9 @@ export default function Explore() {
 
                 </Center>
             </Box>
-            <Stack pt="2rem">   
+            <Stack direction="row" pt="2rem">   
                 <ExploreFilters areas={filterData}/>
-                <ExploreListings />
+                <ExploreListings listings={listingData}/>
             </Stack>
         </Box>
         </Center>
