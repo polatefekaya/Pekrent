@@ -1,12 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using CarRental.Domain.Entities.Base;
 
 namespace CarRental.Domain.Entities;
 
-public class ChargeEntity
+[Table("charges", Schema = "money_transactions")]
+public class ChargeEntity : BaseEntity
 {
-    [Key]
-    public int Id {get; set;}
     public int UserId {get; set;}
     public decimal Amount {get; set;}
     public string? Description {get; set;}
