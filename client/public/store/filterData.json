@@ -1,0 +1,63 @@
+[
+    {
+      "title": "Body Type",
+      "groupName": "body",
+      "lines": [
+        { "label": "SUV" },
+        { "label": "Cabrio" }
+      ]
+    },
+    {
+      "title": "Fuel Type",
+      "groupName": "fueltype",
+      "lines": [
+        { "label": "Diesel" },
+        { "label": "Gas" }
+      ]
+    },
+    {
+      "title": "Gearbox",
+      "groupName": "gearbox",
+      "lines": [
+        { "label": "AWD" },
+        { "label": "RWD" },
+        { "label": "2WD" },
+        { "label": "4WD" },
+        { "label": "FWD" }
+      ]
+    },
+    {
+      "title": "Drivetrain",
+      "groupName": "drivetrain",
+      "lines": [
+        { "label": "AWD" },
+        { "label": "RWD" },
+        { "label": "2WD" },
+        { "label": "4WD" },
+        { "label": "FWD" }
+      ]
+    },
+    {
+      "title": "Seats",
+      "groupName": "seats",
+      "lines": [
+        { "label": "1" },
+        { "label": "2" },
+        { "label": "3" },
+        { "label": "4" },
+        { "label": "6" },
+        { "label": "8" }
+      ]
+    },
+    {
+      "title": "Acceleration",
+      "groupName": "acceleration",
+      "lines": [
+        { "label": "s" },
+        { "label": "w" },
+        { "label": "a" },
+        { "label": "d" },
+        { "label": "q" }
+      ]
+    }
+  ]

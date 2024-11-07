@@ -1,0 +1,3 @@
+type ExploreFilterProps = {
+  areas: FilterAreaProps[];
+};
