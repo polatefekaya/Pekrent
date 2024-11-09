@@ -3,28 +3,32 @@
         "props": {
             "title": "Tertemiz Pejo Süper Araba",
             "description": "Dostum bu arabayı kesinlikle kaçırmamalısın, en güzel ve konforlu kiralanacak arabalardan biridir he",
-            "price": [300,1800,43300],
+            "price": [35,300,1800,43300],
             "distance": 0.2,
             "location": "Bayrampaşa",
             "username": "polatefekaya",
             "listingId": 0,
             "userId": 0,
             "imageUrl": "",
-            "carId": 0
+            "carId": 0,
+            "currency" : "₺",
+            "currencyId": 0
         }
     },
     {
         "props": {
             "title": "Segmentinin Kralı Bir Araba Bu",
             "description": "Daha iyisini bu fiyata bulamazsın akıllı ol.",
-            "price": [450,3200,98200],
+            "price": [40,450,3200,98200],
             "distance": 1.3,
             "location": "Gaziosmanpaşa",
             "username": "furkandokuman",
             "listingId": 0,
             "userId": 0,
             "imageUrl": "",
-            "carId": 0
+            "carId": 0,
+            "currency" : "₺",
+            "currencyId": 0
         }
     }
 ]

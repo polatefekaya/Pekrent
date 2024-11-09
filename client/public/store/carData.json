@@ -18,4 +18,6 @@
     "drivetrain": "FWD",
     "gearbox": "5+1",
     "usecase": "Family",
-    "trunkCapacity": 55}
+    "trunkCapacity": 55,
+    "engineVolume": 1.4
+}

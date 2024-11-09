@@ -1,10 +1,8 @@
 import TopNavigationBar from "@/components/meui/top-navbar";
-import { Text } from "@chakra-ui/react";
 import { Metadata } from "next";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
-    title: "Pekrent - Explore",
+    title: "Pekrent - Listing",
 
 };
 
@@ -15,7 +13,7 @@ export default function RootLayout({
   }>){
     return(
         <>
-            <TopNavigationBar page="explore" authenticated={true}/>
+            <TopNavigationBar page="listing" authenticated={true}/>
             {children}
         </>
     );

@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-    title: "Pekrent - Explore",
+    title: "Pekrent - Your Listings",
 
 };
 
@@ -15,7 +15,7 @@ export default function RootLayout({
   }>){
     return(
         <>
-            <TopNavigationBar page="explore" authenticated={true}/>
+            <TopNavigationBar page="yourlistings" authenticated={true}/>
             {children}
         </>
     );

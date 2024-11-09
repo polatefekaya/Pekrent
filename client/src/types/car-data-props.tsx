@@ -19,4 +19,5 @@ type CarDataProps = {
     gearbox: string;
     usecase: string;
     trunkCapacity: string;
+    engineVolume: string;
 }
