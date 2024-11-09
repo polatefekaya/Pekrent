@@ -68,7 +68,7 @@ stages:
         
         - script: |
             cd client
-            npm install
+            npm install --force
             npm run build
           displayName: "Install Dependencies and Build Client"
 
