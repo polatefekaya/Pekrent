@@ -14,7 +14,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services){
 
-        services.AddScoped<ICrudService<SavedEntity>, CrudService<SavedEntity>>();
+        
         services.AddScoped<ISaveService, SaveService>();
         return services;
     }

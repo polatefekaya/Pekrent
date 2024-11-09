@@ -1,0 +1,3 @@
+type ExploreListingProps = {
+    listings: ListingEntryProps[];
+}

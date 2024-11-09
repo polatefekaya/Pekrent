@@ -15,6 +15,7 @@ public class OrderProgressEntity : BaseEntity
     public bool OrderCreated {get; set;}
     public int StateCode {get; set;}
     public bool Active {get; set;}
+    public bool Cancelled {get; set;}
     public bool Finished {get; set;}
 
     public OrderEntity Order {get; set;} = null!;

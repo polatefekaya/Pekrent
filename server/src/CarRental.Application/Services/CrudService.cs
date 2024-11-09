@@ -4,12 +4,13 @@ using CarRental.Application.Interfaces.Repository;
 using CarRental.Application.Interfaces.Repository.Spesifications;
 using CarRental.Application.Interfaces.Services;
 using CarRental.Application.Specifications.Base;
+using CarRental.Domain.DTO;
 using CarRental.Domain.Entities.Base;
 using Microsoft.Extensions.Logging;
 
 namespace CarRental.Application.Services;
 
-public class CrudService<T> : ICrudService<T> where T : BaseEntity
+public abstract class CrudService<T> : ICrudService<T> where T : BaseEntity
 {
     private readonly ILogger<CrudService<T>> _logger;
     private readonly IGenericRepository<T> _repository;
@@ -21,18 +22,18 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
 
         _className = $"CrudService for {typeof(T).Name}";
     }
-    public async Task CreateAsync(T entity)
+    public async Task CreateAsync(AddGeneralDTO<T> dto)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(CreateAsync), _className);
 
         try
         {
-            await _repository.AddAsync(entity);
+            await _repository.AddAsync(dto.Entity);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetAsync), _className);
-            _logger.LogTrace("Id: {id}", entity.Id);
+            _logger.LogTrace("Id: {id}", dto.Entity.Id);
 
             return;
         }
@@ -40,13 +41,13 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
         _logger.LogDebug("{methodName} finished in {className}", nameof(CreateAsync), _className);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(DeleteGeneralDTO dto)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(DeleteAsync), _className);
 
         try
         {
-            T? entity = await _repository.GetFirstOrDefaultAsync(e => e.Id == id);
+            T? entity = await _repository.GetFirstOrDefaultAsync(e => e.Id == dto.Id);
 
             if (entity is null)
             {
@@ -58,7 +59,7 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
         catch (Exception ex)
         {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetAsync), _className);
-            _logger.LogTrace("Id: {id}", id);
+            _logger.LogTrace("Id: {id}", dto.Id);
 
             return;
         }
@@ -107,7 +108,7 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
         return entities;
     }
 
-    public async Task<T?> GetAsync(int id)
+    public async Task<T?> GetAsync(GetGeneralDTO dto)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(GetAsync), _className);
 
@@ -115,12 +116,12 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
 
         try
         {
-            entity = await _repository.GetFirstOrDefaultAsync(e => e.Id == id);
+            entity = await _repository.GetFirstOrDefaultAsync(e => e.Id == dto.Id);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(GetAsync), _className);
-            _logger.LogTrace("Id: {id}", id);
+            _logger.LogTrace("Id: {id}", dto.Id);
 
             return entity;
         }
@@ -199,18 +200,18 @@ public class CrudService<T> : ICrudService<T> where T : BaseEntity
         return entity;
     }
 
-    public async Task UpdateAsync(T entity)
+    public async Task UpdateAsync(UpdateGeneralDTO<T> dto)
     {
         _logger.LogInformation("{methodName} started in {className}", nameof(UpdateAsync), _className);
 
         try
         {
-            await _repository.UpdateAsync(entity);
+            await _repository.UpdateAsync(dto.Entity);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Something unexpected happened while executing {methodName} in {className}", nameof(UpdateAsync), _className);
-            _logger.LogTrace("Id: {id}", entity.Id);
+            _logger.LogTrace("Id: {id}", dto.Entity.Id);
 
             return;
         }

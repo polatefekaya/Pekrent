@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
+    <Folder Include="DTO\Car\" />
+    <Folder Include="DTO\Order\Fine\" />
+    <Folder Include="DTO\Price\" />
+    <Folder Include="DTO\Saved\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
   </ItemGroup>
 
 </Project>

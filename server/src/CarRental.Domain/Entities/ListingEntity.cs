@@ -10,6 +10,7 @@ public class ListingEntity : BaseEntity
 {
     public int UserId {get; set;}
     public int CarId {get; set;}
+    public int AnalyticsId {get; set;}
     public string? Heading {get; set;}
     public string? Description {get; set;}
     public int TotalCars {get; set;}
@@ -23,4 +24,5 @@ public class ListingEntity : BaseEntity
     public List<PriceEntity>? Prices {get; set;} = [];
     public List<SavedEntity>? Savings {get; set;} = [];
     public List<OrderInfoEntity>? OrderInfos {get; set;} = [];
+    public ListingAnalyticsEntity Analytics {get; set;} = null!;
 }
