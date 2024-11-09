@@ -9,6 +9,10 @@ variables:
     value: "carRentalServerKCluster"
   - name: resourceGroup
     value: "Learning"
+  - name: appServicePlanName
+    value: "carAppServicePlan"
+  - name: webAppName
+    value: "pekrent"
   - group: carRentalVariables
 
 
@@ -54,40 +58,45 @@ stages:
     # condition: eq(dependencies.Determine_Changes.outputs['Check_Changes.ClientChanged'], 'true')
     jobs:
       - job: Build_and_Deploy_Client
-        displayName: "Build React Client"
+        displayName: "Build Next.Js Client"
         pool:
           vmImage: "ubuntu-latest"
         steps:
         - task: NodeTool@0
           inputs:
-            versionSpec: "22.0"
+            versionSpec: "20.0"
         
-        # - task: Cache@2
-        #   inputs:
-        #     key: 'npm|$(Agent.OS)|package-lock.json'
-        #     path: '$(Pipeline.Workspace)/client/node_modules'
-
         - script: |
             cd client
             npm install
             npm run build
           displayName: "Install Dependencies and Build Client"
 
-        # - task: Docker@2
-        #   inputs:
-        #     command: "buildAndPush"
-        #     repository: '$(clientImageName)'
-        #     Dockerfile: 'client/Dockerfile'
-        #     tags: |
-        #       $(Build.BuildId)
-        #       latest
-        #   displayName: "Build and Push Client Container"
-
-        - task: AzureStaticWebApp@0
+        - task: CopyFiles@2
           inputs:
-            app_location: "client/build"
-            azure_static_web_apps_api_token: '$(AzureStaticWebAppDeploymentToken)'  # Token from Azure portal
-          displayName: 'Deploy Client to Azure Static Web App'
+            contents: 'client/.next/**/*'
+            targetFolder: '$(Build.ArtifactStagingDirectory)/client'
+          displayName: "Copy Build Artifacts"
+
+        - task: PublishBuildArtifacts@1
+          inputs:
+            pathToPublish: '$(Build.ArtifactStagingDirectory)/client'
+            artifactName: 'clientBuild'
+          displayName: "Publish Client Build Artifacts"
+
+      - job: Deploy_Client
+        dependsOn: Build_and_Deploy_Client
+        displayName: "Deploy Client to Azure Web App"
+        pool:
+          vmImage: "ubuntu-latest"
+        steps:
+          - task: AzureWebApp@1
+            inputs:
+              appType: 'webAppLinux'
+              azureSubscription: 'azureResourceConnection'
+              appName: '$(webAppName)'
+              package: '$(Pipeline.Workspace)/clientBuild/.next.zip'
+            displayName: "Deploy Client to Azure Web App"
 
   - stage: Server_Build_and_Deploy
     displayName: "Build and Deploy .Net Server"
