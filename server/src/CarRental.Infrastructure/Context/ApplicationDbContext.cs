@@ -1,11 +1,12 @@
 using System;
 using CarRental.Domain.Entities;
 using CarRental.Infrastructure.Configurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.Infrastructure.Context;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<UserEntity>
 {
     public DbSet<AvailabilityEntity> Availability { get; set; }
 

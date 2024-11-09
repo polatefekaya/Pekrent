@@ -1,11 +1,11 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using CarRental.Domain.Entities.Base;
+using Microsoft.AspNetCore.Identity;
 
 namespace CarRental.Domain.Entities;
 
-[Table("users", Schema = "user")]
-public class UserEntity : BaseEntity
+public class UserEntity : IdentityUser
 {
     public int AvailabilityId {get; set;}
     public int BlacklistId {get; set;}

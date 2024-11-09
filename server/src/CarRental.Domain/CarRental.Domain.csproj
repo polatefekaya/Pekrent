@@ -11,8 +11,11 @@
     <Folder Include="DTO\Order\Fine\" />
     <Folder Include="DTO\Price\" />
     <Folder Include="DTO\Saved\" />
-    <Folder Include="DTO\User\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Serilog;
 using CarRental.Application;
 using CarRental.Infrastructure;
 using CarRental.Fines;
 using CarRental.Payment;
 using CarRental.Api;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +21,7 @@ builder.Services.ConfigureCustomLogging();
 builder.Services.AddInfrastructure()
                 .AddApplication()
                 .AddDatabase(builder.Configuration["PostgresConnectionString"])
+                .ConfigureIdentity()
                 .AddPayment()
                 .AddFines();
 
@@ -46,7 +47,11 @@ if (app.Environment.IsDevelopment())
     app.ConfigureSwaggerMiddlewares();
 }
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseHttpsRedirection();
+app.UseHsts();
 
 app.MapControllers();
 
