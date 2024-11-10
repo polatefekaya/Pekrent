@@ -7,8 +7,10 @@ Welcome to **Pekrent**, a peer-to-peer car rental platform designed to revolutio
 ### Client Side
 - **Language**: TypeScript
 - **Framework**: Next.js
+- **State Management**: Zustand
+- **UI Library**: Chakra UI
 
-The client side of Pekrent is implemented using **Next.js**, a popular React-based framework that provides server-side rendering (SSR), fast performance, and an improved development experience. TypeScript is used throughout for type safety and enhanced code maintainability.
+The client side of Pekrent is implemented using **Next.js**, a popular React-based framework that provides server-side rendering (SSR), fast performance, and an improved development experience. TypeScript is used throughout for type safety and enhanced code maintainability. **Zustand** is used for state management, providing a simple and scalable approach to manage global state within the client application. **Chakra UI** is utilized to ensure a modern and responsive design with pre-built accessible components.
 
 ### Server Side
 - **Language**: C#
@@ -27,6 +29,8 @@ The backend is built with **.NET Core 8**, a high-performance, cross-platform fr
 - **Secure Payment Handling**: Integrates secure payment gateways to ensure a smooth transaction process.
 - **Type Safety**: TypeScript and C# for end-to-end type safety, reducing runtime errors and ensuring consistent data handling.
 - **Database Management**: Efficient data access using Entity Framework Core to interact with PostgreSQL.
+- **State Management**: Client-side state management with Zustand for a scalable and efficient data flow.
+- **UI/UX**: Responsive and accessible UI components using Chakra UI.
 - **Monitoring and Insights**: Azure Application Insights integration for real-time monitoring and diagnostics.
 - **Secret Management**: Secure storage and retrieval of secrets using Azure Key Vault.
 - **CI/CD**: Azure Pipelines for continuous integration and delivery, ensuring fast and reliable deployments.
